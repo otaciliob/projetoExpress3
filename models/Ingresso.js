@@ -1,21 +1,19 @@
-let ids = 0;
-let ingressos = [];
+const {IngressoModel} = require('./DB');
 
-module.export{
-  new(nome,preco,estoque){
-    let ingresso = {id: ids,nome: nome, preco:preco, estoque:estoque};
-    ingressos.push(ingresso);
-    ids++;
-  },
-  getPositionById(identificador) {
-        let i = 0;
-        if (identificador) {
-            for (i = 0; i < users.length; i++) {
-                if (ingressos[i].id == identificador) {
-                    return i;
-                }
-            }
-        }
-        return -1;
+module.exports = {
+    novo: async() =>{
+        return await IngressoModel.create({nome: nome,preco: preco, quantidade: quantidade});
+    },
+    lista: async ()=>{
+        return await IngressoModel.findAll();
+    },
+    busca: async ()=>{
+        return await IngressoModel.findByPk(id);
+    },
+    alterar: async(ingresso)=>{
+        return await IngressoModel.update(ingresso,{where: ingresso.id });
+    },
+    apagar: (id)=>{
+        return IngressoModel.destroy({where: id})
     }
 }

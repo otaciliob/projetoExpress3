@@ -5,7 +5,10 @@ const {autorizado, isAdmin} = require("../middleware/Auth");
 var UserModel = require("../models/User.js");
 
 router.get("/",(req,res)=>{
-    res.json("hello world !");
+    let args = {
+        titulo: "Templates"
+    };
+    res.render("home",args);
 })
 router.get("/lista", async(req, res) => {
     res.json({status: true, user: await UserModel.lista()});

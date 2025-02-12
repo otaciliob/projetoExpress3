@@ -14,6 +14,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.engine("mustache",engine);
 
+app.set("views","./views");
+app.set("view engine", "mustache");
+
 app.use("/", UserRouter);
 sequelize.sync();
 

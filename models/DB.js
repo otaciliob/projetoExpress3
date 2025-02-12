@@ -25,9 +25,30 @@ const UserModel = sequelize.define('User',{
         defaultValue: false
     }
 });
+const IngressoModel = sequelize.define('Ingresso',{
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true, 
+        primaryKey: true
+    },
+    nome: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    preco: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
+    quantidade:{
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false
+    }
+});
+//adicionar tabela de relacionameto M<=>M (Compra)
 
 
 module.exports = {
     sequelize: sequelize,
-    UserModel: UserModel
+    UserModel: UserModel,
+    IngressoModel: IngressoModel
 }
