@@ -9,11 +9,12 @@ const UserModel = sequelize.define('User',{
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true, 
-        primaryKey: true
+        primaryKey: true        
     },
     nome: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     senha: {
         type: DataTypes.STRING,

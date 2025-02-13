@@ -6,23 +6,21 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> {{titulo}}</title>
-        
+        <title>{{$ title }}My Awesome Site{{/ title }}</title>
+
+           <!-- > <link rel="stylesheet" href="/assets/css/default.css">  <-->
+
     </head>
         <header>
-            <h1>Bilheteria</h1>
-            {{!
-                botao para acessar a pagina de administrador(usuario administrador)
-            }}
+        {{! botao para retornar a pagina inicial }}
+            <h1>Welcome to My Awesome Site</h1>
         </header>
         <div id="content">
             <p>Hello, World!</p>
             {{!
-                form de login(usuario offline)
-                lista de bilhetes comprados(usuario online)
-                lista de bilhetes a venda(usuario online)
+                lista de ingressos existentes
+                form para criar e editar ingressos
             }}
         </div>
-        
     </body>
 </html>

@@ -7,7 +7,7 @@ module.exports = {
     lista: async ()=>{
         return await UserModel.findAll();
     },
-    busca: async ()=>{
+    buscaPorId: async ()=>{
         return await UserModel.findByPk(id);
     },
     alterar: async(user)=>{
@@ -15,5 +15,11 @@ module.exports = {
     },
     apagar: (user)=>{
         return UserModel.destroy({where: user.id})
+    },
+    buscaPorNome:async (nome,senha)=>{
+        return await UserModel.findOne({where:{
+            nome: nome,
+            senha: senha
+        }})
     }
 }
