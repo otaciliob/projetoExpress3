@@ -7,7 +7,7 @@ const sequelize = new Sequelize({
 
 const UserModel = sequelize.define('User',{
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true, 
         primaryKey: true        
     },
@@ -28,7 +28,7 @@ const UserModel = sequelize.define('User',{
 });
 const IngressoModel = sequelize.define('Ingresso',{
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true, 
         primaryKey: true
     },
@@ -45,11 +45,29 @@ const IngressoModel = sequelize.define('Ingresso',{
         allowNull: false
     }
 });
-//adicionar tabela de relacionameto M<=>M (Compra)
+const Compra = sequelize.define('Compra', {
+  UserId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: UserModel, // 'Users' would also work
+      key: 'id',
+    },
+  },
+  IngressoId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: IngressoModel, // 'Ingressos' would also work
+      key: 'id',
+    },
+  },
+});
+UserModel.belongsToMany(IngressoModel, { through: Compra });
+IngressoModel.belongsToMany(UserModel, { through: Compra });
 
 
 module.exports = {
     sequelize: sequelize,
     UserModel: UserModel,
-    IngressoModel: IngressoModel
+    IngressoModel: IngressoModel,
+    Compra: Compra
 }

@@ -10,16 +10,9 @@ router.get("/",(req,res)=>{
     };
     res.render("home",args);
 });
-
 router.get("/lista", async(req, res) => {
     res.json({status: true, user: await UserModel.lista()});
 });
-
-router.post("/",(req, res) => {
-    let {nome, senha} = req.body;
-    res.json({status: true, user: UserModel.novo(nome, senha, false)})
-});
-
 router.post("/signin",(req,res)=>{
     let { nome, senha } = req.body;
     let user = UserModel.buscaPorNome(nome,senha)
@@ -32,6 +25,11 @@ router.post("/signin",(req,res)=>{
     }else{res.status(400).json('User Not Found')}
 
 });//login
-router.post("/signup",(req,res)=>{});//cadastro
+router.post("/signup",(req,res)=>{
+    let {nome, senha} = req.body;
+    res.json({status: true, user: UserModel.novo(nome, senha, false)})
+});//cadastro
+
+
 
 module.exports = router;
