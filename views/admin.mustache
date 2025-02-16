@@ -6,17 +6,26 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{$ title }}My Awesome Site{{/ title }}</title>
+        <title>{{ titulo }}</title>
 
            <!-- > <link rel="stylesheet" href="/assets/css/default.css">  <-->
 
     </head>
         <header>
-        {{! botao para retornar a pagina inicial }}
-            <h1>Welcome to My Awesome Site</h1>
+            <h1>Administração</h1>
+            <div>
+                <a href="/admin/user"><button>usuarios</button></a>
+                <a href="/admin/ingresso"><button>ingressos</button></a>
+                <a href="/home"><button>Home</button></a>
+            </div>
         </header>
         <div id="content">
-            <p>Hello, World!</p>
+            <p>Olá, Administrador!</p>
+            <form action="/user" method="">
+                {{# user }}
+                <input type="hidden" id="id" value={{.}}>
+                {{/ user }}
+            </form>
             {{!
                 lista de ingressos existentes
                 form para criar e editar ingressos
@@ -24,3 +33,11 @@
         </div>
     </body>
 </html>
+<style>
+header{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center
+}
+</style>

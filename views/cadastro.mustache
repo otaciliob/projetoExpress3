@@ -1,0 +1,60 @@
+{{% BLOCKS }}
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+         <!-- ><link rel="stylesheet" href="../stylesheets/home.css"> <-->
+
+        <title> {{titulo}}</title>
+        
+    </head>
+        <header>
+            <h1>Cadastrar</h1>
+        </header>
+        <div id="content">
+            <form id="signUpForm" action="/signup" method="post">
+                <div id="FormLabel">
+                    <label for="campoNome">Nome</label>
+                    <label for="campoSenha">Senha</label></div>
+                <div id="FormInput">
+                    <input type="text" name="nome" id="campoNome">
+                    <input type="password" name="senha" id="campoSenha">
+                </div>
+                <input type="submit" name="SignUpBtn" id="SignUpBtn" value="Cadastrar">                
+            </form>
+        </div>
+        
+    </body>
+</html>
+<style>
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+form>div{
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+form>div>*{
+    margin: 2px;
+}
+label{
+    align-items: flex-end;
+}
+#SignUpBtn{
+    padding: 14px 8px;
+}
+</style>

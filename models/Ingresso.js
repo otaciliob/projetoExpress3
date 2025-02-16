@@ -1,19 +1,31 @@
-const {IngressoModel} = require('./DB');
+const { IngressoModel } = require('./DB');
 
 module.exports = {
-    novo: async() =>{
-        return await IngressoModel.create({nome: nome,preco: preco, quantidade: quantidade});
+    novo: async (nome, preco, quantidade) => {
+        return await IngressoModel.create({ nome: nome, preco: preco, quantidade: quantidade });
     },
-    lista: async ()=>{
+
+    lista: async () => {
         return await IngressoModel.findAll();
     },
-    busca: async ()=>{
+
+    busca: async () => {
         return await IngressoModel.findByPk(id);
     },
-    alterar: async(ingresso)=>{
-        return await IngressoModel.update(ingresso,{where: ingresso.id });
+
+    alterar: async (ingresso) => {
+        return await IngressoModel.update(ingresso, {
+            where: {
+                id: ingresso.id,
+            }
+        });
     },
-    apagar: (id)=>{
-        return IngressoModel.destroy({where: id})
+
+    apagar: (id) => {
+        return IngressoModel.destroy({
+            where: {
+                id: id,
+            }
+        })
     }
 }

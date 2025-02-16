@@ -7,7 +7,7 @@ const sequelize = new Sequelize({
 
 const UserModel = sequelize.define('User',{
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true, 
         primaryKey: true        
     },
@@ -28,7 +28,7 @@ const UserModel = sequelize.define('User',{
 });
 const IngressoModel = sequelize.define('Ingresso',{
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         autoIncrement: true, 
         primaryKey: true
     },
@@ -41,7 +41,7 @@ const IngressoModel = sequelize.define('Ingresso',{
         allowNull: false
     },
     quantidade:{
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false
     }
 });

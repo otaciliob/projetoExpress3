@@ -6,19 +6,45 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+         <!-- ><link rel="stylesheet" href="../stylesheets/home.css"> <-->
+
         <title> {{titulo}}</title>
         
     </head>
         <header>
             <h1>Bilheteria</h1>
-            {{!
-                botao para acessar a pagina de administrador(usuario administrador)
-            }}
+            {{# user }}
+                <div>
+                    {{# isAdmin }}
+                        <a href="/admin">
+                            <button id="btnAdmin" href="/admin">Admin</button>
+                        </a>
+                    {{/ isAdmin }}
+                    <a href="/signout">
+                        <button id="btnSair">SAIR</button>
+                    </a>
+                </div>
+            {{/ user }}
         </header>
         <div id="content">
-            <p>Hello, World!</p>
+            {{# user }}
+                <p>Hello, World!</p>            
+            {{/ user }}
+            {{^ user }}
+                <form id="signinForm" action="/signin" method="post">
+                    <div id="FormLabel">
+                        <label for="campoNome">Nome</label>
+                        <label for="campoSenha">Senha</label></div>
+                    <div id="FormInput">
+                        <input type="text" name="nome" id="campoNome">
+                        <input type="password" name="senha" id="campoSenha">
+                    </div>
+                    <input type="submit" name="SignInBtn" id="SignInBtn" value="Entrar">                
+                </form>
+                <a href="/signup/">Nao possui Conta ?</a>
+            {{/ user }}
             {{!
-                form de login(usuario offline)
                 lista de bilhetes comprados(usuario online)
                 lista de bilhetes a venda(usuario online)
             }}
@@ -26,3 +52,37 @@
         
     </body>
 </html>
+<style>
+header{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center
+}
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+form>div{
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+form>div>*{
+    margin: 2px;
+}
+label{
+    align-items: flex-end;
+}
+#SignInBtn{
+    padding: 14px 8px;
+}
+</style>

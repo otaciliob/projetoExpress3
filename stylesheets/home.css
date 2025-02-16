@@ -1,0 +1,70 @@
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form{
+    display: flex;
+    flex-direction: row;
+}
+form>div{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+} 
+.labels{
+    align-items: flex-end;
+}
+label{
+    color: #fff;
+    font-size: 36px;
+    margin: 12px;
+}
+label[for=imagem]{
+    color: #fff;
+    font-size: 36px;
+    margin: 12px;
+    height: 160px;
+}
+input{
+    margin: 10px;
+    height: 40px;
+    width: 500px;
+    border: solid #fff;
+}
+input#imagem{
+    margin: 10px;
+    height: 160px;
+    width: 500px;
+    border: dashed grey;
+}
+.radios{
+    display:inline-flex;
+    align-items: center;
+}
+.radios>input[type=radio]{
+    min-width: fit-content;
+    min-height: fit-content;
+    width: 28px;
+    height: 28px;
+}
+#recover{
+    margin-top: 48px;
+}
+.buttons>a>button{
+    background-color: var(--primary_color);
+    margin-left: 5px;
+}
+button{
+    background-color: var(--button_color);
+    font-size: 24px;
+}
+button#redbutton{
+    background-color: red;
+
+}
+body{
+    padding-bottom: 18px;
+}
