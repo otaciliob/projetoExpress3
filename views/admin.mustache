@@ -1,4 +1,3 @@
-{{% BLOCKS }}
 <!DOCTYPE html>
 <html lang="en">
 <html>
@@ -20,12 +19,45 @@
             </div>
         </header>
         <div id="content">
-            <p>Olá, Administrador!</p>
-            <form action="/user" method="">
-                {{# user }}
-                <input type="hidden" id="id" value={{.}}>
-                {{/ user }}
-            </form>
+            {{# usuarios }}
+            <p>Cadastrar novo usuario</p>
+                <form action="/admin/user/create" method="post">
+                <div class="divInputs">
+                    <label for="nome">NOME</label>
+                    <input type="text" name="nome" id="nome" value="">
+                </div>
+                <div class="divInputs">
+                    <label for="senha">SENHA</label>
+                    <input type="password" name="senha" id="senha" value="">
+                </div>
+                <div class="divInputs">
+                    <label for="isAdmin">ADMIN</label>
+                    <input type="checkbox" name="isAdmin" id="isAdmin" value="true">
+                </div>
+                <input type="submit" name="" id="" value="Cadastrar">
+                </form>
+            {{/ usuarios }}
+            {{# ingressos }}
+            <p>Gerenciar Ingressos</p>
+                <form action="/admin/ingresso/create" method="post">
+                    {{# ingresso }}
+                        <input type="hidden" name="id" id="id" value={{id}}>
+                    {{/ ingresso }}
+                    <div class="divInputs">
+                        <label for="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" value="" required>
+                    </div>
+                    <div class="divInputs">
+                        <label for="preco">Preço</label>
+                        <input type="number" name="preco" id="preco" placeholder="99.99" required>
+                    </div>
+                    <div class="divInputs">
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" name="quantidade" id="quantidade" min="0" value="0" required>
+                    </div>
+                    <input type="submit" name="" id="" value="Cadastrar">
+                </form>
+            {{/ ingressos }}
             {{!
                 lista de ingressos existentes
                 form para criar e editar ingressos
@@ -34,6 +66,14 @@
     </body>
 </html>
 <style>
+.divInputs{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+
+    width:260px;
+}
 header{
     display:flex;
     flex-direction: row;

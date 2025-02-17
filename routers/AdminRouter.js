@@ -4,30 +4,36 @@ const { autorizado, isAdmin } = require("../middleware/Auth");
 var IngressoModel = require("../models/Ingresso");
 var UserModel = require("../models/User.js");
 
-router.get("/", (req, res) => {
+router.get("/",autorizado,isAdmin, (req, res) => {
     let args = {
         titulo: "Administração",
-        error: req.error
     };
     res.render("admin",args)
 });
+router.get("/user",autorizado,isAdmin, async(req, res) => {
+    let args = {
+        titulo: "Administração",
+        usuarios: true,
+    };
+    res.render("admin",args)
+});
+router.get("/ingresso",autorizado,isAdmin,(req,res)=>{
+    let args = {
+        titulo: "Administração",
+        ingressos: true,
+    };
+    res.render("admin",args)
+})
 router.post("/user/create",autorizado,isAdmin,async(req,res)=>{
     let { nome, senha, isAdmin } = req.body;
+    if (isAdmin == undefined) {
+        isAdmin = false;
+    }
     if (nome && senha) {
         res.json({ status: true, user: await UserModel.novo(nome, senha, isAdmin) })
+        res.redirect('/admin/user');
     } else {
-        res.redirect('/admin');
-    }
-});
-router.delete("/user/:id",autorizado,isAdmin,async(req,res)=>{
-    let {id} = req.params;
-    if(id){
-        try {
-            const result = await UserModel.apagar(id)
-            res.redirect('/admin');
-        } catch (error) {
-            res.status(304).json(error);
-        }
+        res.redirect('/admin/user');
     }
 });
 router.post("/ingresso/create",autorizado,isAdmin, async(req, res) => {
@@ -52,7 +58,7 @@ router.put("/ingresso/:id",autorizado,isAdmin, async(req, res) => {
     }
 
 });
-router.delete("/ingresso/:id",autorizado,isAdmin, async(req, res) => {
+router.delete("/ingresso/delete/:id",autorizado,isAdmin, async(req, res) => {
     let {id} = req.params;
     //console.log(id);
     if (id) {
